@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap');
+
+:root {
+  --azul:        #1c3872;
+  --azul-hover:  #254fa8;
+  --gris-footer: #dde3ed;
+  --blanco:      #ffffff;
+  --ancho:       320px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  min-height: 100vh;
+  background: #eef1f7;
+  font-family: 'Barlow', sans-serif;
+}
+
+.contenedor {
+  width: var(--ancho);
+  background: var(--azul);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(28, 56, 114, 0.35);
+  animation: entrada 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--blanco);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fila-entra 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(0.08s * var(--i) + 0.2s);
+  transition: background 0.25s ease, padding-left 0.25s ease;
+}
+
+@keyframes fila-entra {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0);
+  transition: background 0.25s ease;
+  pointer-events: none;
+}
+
+.item:hover {
+  background: var(--azul-hover);
+  padding-left: 26px;
+}
+
+.item:hover::after {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.flecha {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.65);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.item:hover .flecha {
+  transform: translateX(5px);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.footer-wrap {
+  position: relative;
+  background: var(--gris-footer);
+  line-height: 0;
+}
+
+.ola {
+  width: 100%;
+  height: 44px;
+  display: block;
+  animation: ola-sube 3.5s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+@keyframes ola-sube {
+  0%   { transform: scaleY(1)    translateY(0); }
+  50%  { transform: scaleY(1.08) translateY(-2px); }
+  100% { transform: scaleY(0.95) translateY(2px); }
+}
+
+.footer {
+  background: var(--gris-footer);
+  color: var(--azul);
+  text-align: center;
+  padding: 10px 16px 18px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 1;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background: var(--azul);
+  color: var(--blanco);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: background 0.25s ease, transform 0.2s ease;
+  animation: entrada 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+.btn:hover {
+  background: var(--azul-hover);
+  transform: translateY(-2px);
+}
